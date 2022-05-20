@@ -1,0 +1,26 @@
+<MyRoot>:
+	weatherLabel: weatherLabel
+	weatherIcon: weatherIcon
+  
+	BoxLayout:
+		orientation: 'vertical'
+    
+		Label:
+			text: "RainyDay"
+			font_size: 64
+			color: .24, .68, .73
+      
+		Label:
+			id: weatherLabel
+			text: "-"
+			font_size: 32
+      
+		AsyncImage:
+			id: weatherIcon
+			source: ""
+      
+		Button:
+			text: "Gather"
+			font_size: 16
+			size: 100, 50
+			on_press: root.getWeather()
