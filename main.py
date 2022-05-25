@@ -81,6 +81,7 @@ weatherCodes = {
 kivy.require('1.9.0') #Using 1.9.0 as a test version as it is compatible with older devices but can upgrade to 2.0.0 for newer Android versions
 
 class MyRoot(BoxLayout):
+    currTemp = 0
 
     def __init__(self):
         super(MyRoot, self).__init__()
@@ -91,14 +92,34 @@ class MyRoot(BoxLayout):
 
         self.weatherIcon.source = 'https://openweathermap.org/img/wn/'+ str(weather_data['weather'][0]['icon']) + '@2x.png'
 
+        currTemp = kelvinToFarenheit(weather_data['main']['temp']) #Converting kelvin temp to celsius
 
+        self.temperature.text = str(currTemp) + "°F" #Updating current temperature label
         self.weatherLabel.text = weatherCodes[weather_code]
-
 
 class RainyDay(App):
 
     def build(self):#return the UI
         return MyRoot()
+
+#This function converts Kelvin temperature to Celsius
+#Returns Celsius temperature
+def kelvinToCelsius(temperature):
+    temperature -= 273.15
+    temperature = round(temperature, 2)
+    return temperature
+
+
+#This function converts Kelvin temperature to Farenheit
+#Returns Farenheit temperature
+def kelvinToFarenheit(temperature):
+    temperature = temperature * (9/5) - 459.67
+    temperature = round(temperature, 2)
+    return temperature
+    
+
+
+
 
 rainyDay = RainyDay()
 rainyDay.run()

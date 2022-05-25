@@ -1,6 +1,7 @@
 <MyRoot>:
 	weatherLabel: weatherLabel
 	weatherIcon: weatherIcon
+    temperature: temperature
   
 	BoxLayout:
 		orientation: 'vertical'
@@ -14,7 +15,10 @@
 			id: weatherLabel
 			text: "-"
 			font_size: 32
-      
+		Label:
+			id: temperature
+			text: "-"
+			font_size: 32
 		AsyncImage:
 			id: weatherIcon
 			source: ""
